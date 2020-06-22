@@ -1,17 +1,17 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import WideCard from './WideCard'
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import WideCard from './WideCard';
 
 const wishListItem = props => {
     return (
         <WideCard>
-            <View style={styles.ImageContainer}>
+            <TouchableOpacity onPress={props.press} style={styles.ImageContainer}>
                 <Image
                     source={{ uri: props.item.imageUrl }}
                     style={styles.Image}
                 />
-            </View>
+            </TouchableOpacity>
             <View style={styles.TextBox}>
                 <View style={styles.TopText}>
                     <View >
@@ -28,7 +28,7 @@ const wishListItem = props => {
                     </View>
                     <TouchableOpacity>
                         <Text style={styles.Remove}>
-                            <AntDesign name='key' size={20} color='black' />
+                            <EvilIcons name='trash' size={30} color='black' />
                         </Text>
                     </TouchableOpacity>
 

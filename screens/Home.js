@@ -3,7 +3,13 @@ import HorizontalList from '../components/HorizontalList';
 import { ScrollView } from 'react-native-gesture-handler';
 import { bakery, food, drinks } from '../Data/data';
 
+// import { useSelector } from 'react-redux';
+
 const Home = props => {
+    // const items = useSelector(state => state.items.items);
+    // console.log("hi " + items)
+
+
     const pressHandler = item => props.navigation.navigate({
         routeName: 'productDetails',
         params: {

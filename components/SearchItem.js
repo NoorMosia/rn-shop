@@ -4,14 +4,19 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import WideCard from './WideCard';
 
 const SearchItem = props => {
+
     return (
         <WideCard>
-            <View style={styles.ImageContainer}>
+            <TouchableOpacity
+                onPress={props.press}
+                style={styles.ImageContainer}
+            >
                 <Image
                     source={{ uri: props.item.imageUrl }}
                     style={styles.Image}
+
                 />
-            </View>
+            </TouchableOpacity>
             <View style={styles.TextBox}>
                 <View style={styles.Title}>
                     <Text style={styles.Title}>

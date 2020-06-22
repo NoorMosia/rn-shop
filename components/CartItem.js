@@ -6,7 +6,10 @@ import WideCard from './WideCard';
 const CartItem = props => {
     return (
         <WideCard>
-            <TouchableOpacity onPress={props.press} style={styles.ImageContainer}>
+            <TouchableOpacity
+                onPress={props.press}
+                style={styles.ImageContainer}
+            >
                 <Image
                     source={{ uri: props.item.imageUrl }}
                     style={styles.Image}

@@ -4,12 +4,22 @@ import { StyleSheet, ScrollView } from 'react-native';
 import WishlistItem from '../components/WishlistItem';
 import { drinks } from '../Data/data';
 
-const Wishlist = () => {
+const Wishlist = props => {
+    const pressHandler = item => props.navigation.navigate({
+        routeName: 'productDetails',
+        params: {
+            product: item
+        }
+    });
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
-
             {
-                drinks.map(item => <WishlistItem item={item} key={item.title}></WishlistItem>)
+                drinks.map(item => <WishlistItem
+                    item={item}
+                    key={item.title}
+                    press={pressHandler.bind(this, item)}
+                ></WishlistItem>)
             }
         </ScrollView>
     );
