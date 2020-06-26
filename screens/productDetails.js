@@ -9,11 +9,13 @@ const ProductDetails = props => {
                 <Image style={styles.Image} source={{ uri: ProductDetails.imageUrl }}></Image>
             </View>
 
-            <View>
-                <Text>{ProductDetails.title}</Text>
-            </View>
-            <View>
-                <Text>R {ProductDetails.price.toFixed(2)}</Text>
+            <View style={styles.detailsTextContainer}>
+                <View >
+                    <Text>{ProductDetails.title}</Text>
+                </View>
+                <View>
+                    <Text>R {ProductDetails.price.toFixed(2)}</Text>
+                </View>
             </View>
         </View>
     )
@@ -29,8 +31,9 @@ ProductDetails.navigationOptions = navigationData => {
 
 const styles = StyleSheet.create({
     ProductDetails: {
-        height: '60%',
-        borderRadius: 3
+        height: '100%',
+        borderRadius: 3,
+        backgroundColor: 'white'
     },
     ImageContainer: {
         width: '100%',
@@ -39,9 +42,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     Image: {
-        height: '60%',
+        height: '40%',
         width: "60%",
         overflow: 'visible'
+    },
+    detailsTextContainer: {
+        backgroundColor: 'rgb(230, 230, 230)',
+        height: '60%',
+        borderTopEndRadius: 40,
+        borderTopLeftRadius: 40,
+        padding: 40,
+        width: '100%'
     }
 
 })

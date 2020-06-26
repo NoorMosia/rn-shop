@@ -1,14 +1,20 @@
 import React from 'react';
 import HorizontalList from '../components/HorizontalList';
 import { ScrollView } from 'react-native-gesture-handler';
-import { bakery, food, drinks } from '../Data/data';
 
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Home = props => {
-    // const items = useSelector(state => state.items.items);
-    // console.log("hi " + items)
 
+    const foodItems = useSelector(state =>
+        state.items.filter(prod => prod.category === 'fast food')
+    );
+    const drinkItems = useSelector(state =>
+        state.items.filter(prod => prod.category === 'drinks')
+    );
+    const bakeryItems = useSelector(state =>
+        state.items.filter(prod => prod.category === 'bakery')
+    );
 
     const pressHandler = item => props.navigation.navigate({
         routeName: 'productDetails',
@@ -19,23 +25,25 @@ const Home = props => {
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
-
             <HorizontalList
                 category="Fast Food"
                 select={pressHandler}
-                data={food}>
+                data={foodItems}
+            >
 
             </HorizontalList>
             <HorizontalList
                 category="Drinks"
                 select={pressHandler}
-                data={drinks}>
+                data={drinkItems}
+            >
 
             </HorizontalList>
             <HorizontalList
                 category="Bakery Food"
                 select={pressHandler}
-                data={bakery}>
+                data={bakeryItems}
+            >
 
             </HorizontalList>
         </ScrollView>

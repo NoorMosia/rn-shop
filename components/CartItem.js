@@ -29,7 +29,7 @@ const CartItem = props => {
                             </Text>
                         </View>
                     </View>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={props.removeFromCartHandler}>
                         <Text style={styles.Remove}>
                             <EvilIcons name='trash' size={30} color='black' />
                         </Text>

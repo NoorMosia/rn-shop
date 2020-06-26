@@ -1,8 +1,12 @@
 import initData from './initData';
 
-
 const reducer = (state = initData, action) => {
-    return state
+    switch (action.type) {
+        case "food":
+            return initData.filter(data => data.category === 'fast food')
+        default:
+            return state
+    }
 }
 
 export default reducer;

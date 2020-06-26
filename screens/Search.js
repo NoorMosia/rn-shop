@@ -4,7 +4,10 @@ import { View, TextInput, StyleSheet, ScrollView } from 'react-native';
 import SearchItem from '../components/SearchItem';
 import BasicButton from '../components/BasicButton';
 
-import { bakery } from '../Data/data';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/actions/cartActions';
+
+import bakery from '../store/reducers/initData';
 
 const Search = props => {
     const pressHandler = item => props.navigation.navigate({
@@ -13,6 +16,12 @@ const Search = props => {
             product: item
         }
     });
+
+    const dispatch = useDispatch();
+
+    const addToCartHandler = item => {
+        dispatch(addToCart(item))
+    }
 
     return (
         <View>
@@ -26,13 +35,15 @@ const Search = props => {
 
             <ScrollView contentContainerStyle={styles.container}>
                 {
-                    bakery.map(item =>
-                        <SearchItem
+                    bakery.map(item => {
+                        return (<SearchItem
                             item={item}
                             key={item.title}
                             press={pressHandler.bind(this, item)}
+                            addToCartHandler={addToCartHandler.bind(this, item)}
                         >
                         </SearchItem>)
+                    })
                 }
             </ScrollView>
         </View>

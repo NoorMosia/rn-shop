@@ -6,10 +6,10 @@ import {
     Text,
     View
 } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart } from '../store/actions/cartActions'
 
 import CartItem from '../components/CartItem';
-
-import { food } from '../Data/data';
 
 const Cart = props => {
     const pressHandler = item => props.navigation.navigate({
@@ -19,17 +19,29 @@ const Cart = props => {
         }
     });
 
+    const dispatch = useDispatch();
+
+    const removeFromCartHandler = itemId => {
+        dispatch(removeFromCart(itemId))
+    }
+
+    const cartData = useSelector(state => state.cart);
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             {
-                food.map(item => <CartItem
+                cartData.items.map(item => <CartItem
                     item={item}
                     key={item.title}
                     press={pressHandler.bind(this, item)}
-                ></CartItem>)
+                    removeFromCartHandler={removeFromCartHandler.bind(this, item.id)}
+                ></CartItem>
+                )
             }
             <View style={styles.total}>
-                <Text style={styles.totalText}>Total : R 30.89</Text>
+                <Text style={styles.totalText}>
+                    Total : R {cartData.totalAmount.toFixed(2)}
+                </Text>
             </View>
             <TouchableOpacity style={styles.checkoutButton}>
                 <Text>

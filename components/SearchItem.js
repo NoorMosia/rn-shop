@@ -30,7 +30,10 @@ const SearchItem = props => {
                 </View>
 
                 <View style={styles.Buttons}>
-                    <TouchableOpacity style={styles.addToCart}>
+                    <TouchableOpacity
+                        onPress={props.addToCartHandler}
+                        style={styles.addToCart}
+                    >
                         <Text>add to cart</Text>
                     </TouchableOpacity>
 
