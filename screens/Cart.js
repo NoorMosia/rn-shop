@@ -7,7 +7,7 @@ import {
     View
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart } from '../store/actions/cartActions'
+import { removeFromCart, incrementItem, decrementItem } from '../store/actions/cartActions'
 
 import CartItem from '../components/CartItem';
 
@@ -24,6 +24,12 @@ const Cart = props => {
     const removeFromCartHandler = itemId => {
         dispatch(removeFromCart(itemId))
     }
+    const incrementItemHandler = itemId => {
+        dispatch(incrementItem(itemId))
+    }
+    const decrementItemHandler = itemId => {
+        dispatch(decrementItem(itemId))
+    }
 
     const cartData = useSelector(state => state.cart);
 
@@ -35,6 +41,8 @@ const Cart = props => {
                     key={item.title}
                     press={pressHandler.bind(this, item)}
                     removeFromCartHandler={removeFromCartHandler.bind(this, item.id)}
+                    incrementItemHandler={incrementItemHandler.bind(this, item.id)}
+                    decrementItemHandler={decrementItemHandler.bind(this, item.id)}
                 ></CartItem>
                 )
             }

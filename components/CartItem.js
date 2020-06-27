@@ -37,15 +37,15 @@ const CartItem = props => {
                 </View>
 
                 <View style={styles.Buttons}>
-                    <TouchableOpacity style={styles.Increment}>
+                    <TouchableOpacity onPress={props.decrementItemHandler} style={styles.Increment}>
                         <Text>-</Text>
                     </TouchableOpacity>
 
                     <View>
-                        <Text>1</Text>
+                        <Text>{props.item.quantity}</Text>
                     </View>
 
-                    <TouchableOpacity style={styles.Decrement}>
+                    <TouchableOpacity onPress={props.incrementItemHandler} style={styles.Decrement}>
                         <Text>+</Text>
                     </TouchableOpacity>
                 </View>

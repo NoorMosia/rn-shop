@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import WideCard from './WideCard';
+import { addToCart } from '../store/actions/cartActions';
 
 const wishListItem = props => {
     return (
@@ -35,7 +36,10 @@ const wishListItem = props => {
                 </View>
 
                 <View style={styles.Buttons}>
-                    <TouchableOpacity style={styles.addToCart}>
+                    <TouchableOpacity
+                        style={styles.addToCart}
+                        onPress={props.addToCartHandler}
+                    >
                         <Text>add to cart</Text>
                     </TouchableOpacity>
 
