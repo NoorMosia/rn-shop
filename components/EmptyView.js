@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const EmptyWishlist = () => {
+const EmptySearch = props => {
     return (
-        <View style={styles.EmptyWishlistContainer}>
+        <View style={styles.EmptySearchContainer}>
             <View style={styles.textContainer}>
-                <AntDesign name='staro' size={100} />
+                <AntDesign name={props.iconName} style={styles.icon} />
                 <View>
-                    <Text>Your wishlist is empty</Text>
+                    <Text>{props.children}</Text>
                 </View>
             </View>
         </View>
@@ -16,16 +16,19 @@ const EmptyWishlist = () => {
 }
 
 const styles = StyleSheet.create({
-    EmptyWishlistContainer: {
+    EmptySearchContainer: {
         justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%'
+        height: '80%',
     },
     textContainer: {
         alignItems: 'center',
+    },
+    icon: {
+        opacity: .2,
+        fontSize: 100
     }
 })
 
 
 
-export default EmptyWishlist;
+export default EmptySearch;

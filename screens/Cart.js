@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, incrementItem, decrementItem } from '../store/actions/cartActions'
 
 import CartItem from '../components/CartItem';
-import EmptyCart from '../components/EmptyCart';
+import EmptyView from '../components/EmptyView';
 
 const Cart = props => {
     const pressHandler = item => props.navigation.navigate({
@@ -53,8 +53,9 @@ const Cart = props => {
                 Checkout
         </Text>
         </TouchableOpacity>
-    </ScrollView> :
-        <EmptyCart></EmptyCart>
+    </ScrollView>
+        :
+        <EmptyView iconName='shoppingcart'>your cart is empty</EmptyView>
 
 
     return (

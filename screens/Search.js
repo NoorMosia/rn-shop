@@ -3,12 +3,13 @@ import { View, TextInput, StyleSheet, ScrollView } from 'react-native';
 
 import SearchItem from '../components/SearchItem';
 import BasicButton from '../components/BasicButton';
+import EmptyView from '../components/EmptyView';
 
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/actions/cartActions';
 import { addToWishlist } from '../store/actions/wishlistActions';
 
-import bakery from '../store/reducers/initData';
+// import bakery from '../store/reducers/initData';
 
 const Search = props => {
     const pressHandler = item => props.navigation.navigate({
@@ -17,6 +18,7 @@ const Search = props => {
             product: item
         }
     });
+    const data = []
 
     const dispatch = useDispatch();
 
@@ -26,6 +28,27 @@ const Search = props => {
     const addToWishlistHandler = item => {
         dispatch(addToWishlist(item))
     }
+
+    const List = data.length > 0
+        ?
+        <ScrollView contentContainerStyle={styles.container}>
+            {
+                data.map(item => {
+                    return (<SearchItem
+                        item={item}
+                        key={item.title}
+                        press={pressHandler.bind(this, item)}
+                        addToCartHandler={addToCartHandler.bind(this, item)}
+                        addToWishlistHandler={addToWishlistHandler.bind(this, item)}
+                    >
+                    </SearchItem>)
+                })
+            }
+        </ScrollView>
+        :
+        <EmptyView iconName='search1'>
+
+        </EmptyView>
 
     return (
         <View>
@@ -37,20 +60,8 @@ const Search = props => {
                 <BasicButton>Search</BasicButton>
             </View>
 
-            <ScrollView contentContainerStyle={styles.container}>
-                {
-                    bakery.map(item => {
-                        return (<SearchItem
-                            item={item}
-                            key={item.title}
-                            press={pressHandler.bind(this, item)}
-                            addToCartHandler={addToCartHandler.bind(this, item)}
-                            addToWishlistHandler={addToWishlistHandler.bind(this, item)}
-                        >
-                        </SearchItem>)
-                    })
-                }
-            </ScrollView>
+            {List}
+
         </View>
     );
 }

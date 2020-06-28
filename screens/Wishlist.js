@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import WishlistItem from '../components/WishlistItem';
 import { addToCart } from '../store/actions/cartActions';
 import { removeFromWishlist } from '../store/actions/wishlistActions';
-import EmptyWishlist from '../components/EmptyWishlist';
+import EmptyView from '../components/EmptyView';
 
 const Wishlist = props => {
     const pressHandler = item => props.navigation.navigate({
@@ -25,17 +25,21 @@ const Wishlist = props => {
         dispacth(removeFromWishlist(item))
     }
 
-    const List = wishlistItems.length > 0 ? <ScrollView contentContainerStyle={styles.container}>
-        {
-            wishlistItems.map(item => <WishlistItem
-                item={item}
-                key={item.title}
-                press={pressHandler.bind(this, item)}
-                addToCartHandler={addToCartHandler.bind(this, item)}
-                removeFromWishlistHandler={removeFromWishlistHandler.bind(this, item.id)}
-            ></WishlistItem>)
-        }
-    </ScrollView> : <EmptyWishlist></EmptyWishlist>
+    const List = wishlistItems.length > 0
+        ?
+        <ScrollView contentContainerStyle={styles.container}>
+            {
+                wishlistItems.map(item => <WishlistItem
+                    item={item}
+                    key={item.title}
+                    press={pressHandler.bind(this, item)}
+                    addToCartHandler={addToCartHandler.bind(this, item)}
+                    removeFromWishlistHandler={removeFromWishlistHandler.bind(this, item.id)}
+                ></WishlistItem>)
+            }
+        </ScrollView>
+        :
+        <EmptyView iconName='staro'>you wishlist is empty</EmptyView>
 
     return (
         List
