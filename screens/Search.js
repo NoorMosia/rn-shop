@@ -6,6 +6,7 @@ import BasicButton from '../components/BasicButton';
 
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/actions/cartActions';
+import { addToWishlist } from '../store/actions/wishlistActions';
 
 import bakery from '../store/reducers/initData';
 
@@ -21,6 +22,9 @@ const Search = props => {
 
     const addToCartHandler = item => {
         dispatch(addToCart(item))
+    }
+    const addToWishlistHandler = item => {
+        dispatch(addToWishlist(item))
     }
 
     return (
@@ -41,6 +45,7 @@ const Search = props => {
                             key={item.title}
                             press={pressHandler.bind(this, item)}
                             addToCartHandler={addToCartHandler.bind(this, item)}
+                            addToWishlistHandler={addToWishlistHandler.bind(this, item)}
                         >
                         </SearchItem>)
                     })

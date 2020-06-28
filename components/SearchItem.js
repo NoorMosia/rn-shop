@@ -37,7 +37,10 @@ const SearchItem = props => {
                         <Text>add to cart</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.addToWishlist}>
+                    <TouchableOpacity
+                        onPress={props.addToWishlistHandler}
+                        style={styles.addToWishlist}
+                    >
                         <Text>add to wishlist</Text>
                     </TouchableOpacity>
                 </View>
@@ -51,11 +54,11 @@ const styles = StyleSheet.create({
         width: '33%',
         justifyContent: "center",
         alignItems: "center",
-        overflow: 'visible'
     },
     Image: {
-        width: '70%',
-        height: '70%'
+        width: '55%',
+        height: '55%',
+        overflow: 'visible'
     },
     TextBox: {
         width: '66%',

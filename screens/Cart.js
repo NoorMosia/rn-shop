@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, incrementItem, decrementItem } from '../store/actions/cartActions'
 
 import CartItem from '../components/CartItem';
+import EmptyCart from '../components/EmptyCart';
 
 const Cart = props => {
     const pressHandler = item => props.navigation.navigate({
@@ -18,9 +19,7 @@ const Cart = props => {
             product: item
         }
     });
-
     const dispatch = useDispatch();
-
     const removeFromCartHandler = itemId => {
         dispatch(removeFromCart(itemId))
     }
@@ -30,33 +29,36 @@ const Cart = props => {
     const decrementItemHandler = itemId => {
         dispatch(decrementItem(itemId))
     }
-
     const cartData = useSelector(state => state.cart);
 
+    const Cart = cartData.items.length > 0 ? <ScrollView contentContainerStyle={styles.container}>
+        {
+            cartData.items.map(item => <CartItem
+                item={item}
+                key={item.title}
+                press={pressHandler.bind(this, item)}
+                removeFromCartHandler={removeFromCartHandler.bind(this, item.id)}
+                incrementItemHandler={incrementItemHandler.bind(this, item.id)}
+                decrementItemHandler={decrementItemHandler.bind(this, item.id)}
+            ></CartItem>
+            )
+        }
+        <View style={styles.total}>
+            <Text style={styles.totalText}>
+                Total : R {cartData.totalAmount.toFixed(2)}
+            </Text>
+        </View>
+        <TouchableOpacity style={styles.checkoutButton}>
+            <Text>
+                Checkout
+        </Text>
+        </TouchableOpacity>
+    </ScrollView> :
+        <EmptyCart></EmptyCart>
+
+
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            {
-                cartData.items.map(item => <CartItem
-                    item={item}
-                    key={item.title}
-                    press={pressHandler.bind(this, item)}
-                    removeFromCartHandler={removeFromCartHandler.bind(this, item.id)}
-                    incrementItemHandler={incrementItemHandler.bind(this, item.id)}
-                    decrementItemHandler={decrementItemHandler.bind(this, item.id)}
-                ></CartItem>
-                )
-            }
-            <View style={styles.total}>
-                <Text style={styles.totalText}>
-                    Total : R {cartData.totalAmount.toFixed(2)}
-                </Text>
-            </View>
-            <TouchableOpacity style={styles.checkoutButton}>
-                <Text>
-                    Checkout
-                </Text>
-            </TouchableOpacity>
-        </ScrollView>
+        Cart
     );
 }
 

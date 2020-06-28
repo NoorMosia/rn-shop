@@ -27,7 +27,7 @@ const wishListItem = props => {
                             </Text>
                         </View>
                     </View>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={props.removeFromWishlistHandler}>
                         <Text style={styles.Remove}>
                             <EvilIcons name='trash' size={30} color='black' />
                         </Text>
@@ -102,6 +102,9 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         shadowColor: 'grey',
         shadowRadius: 3
+    },
+    blurred: {
+        opacity: .1
     }
 
 })

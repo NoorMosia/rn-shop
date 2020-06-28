@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import WishlistItem from '../components/WishlistItem';
-import { drinks } from '../Data/data';
 import { addToCart } from '../store/actions/cartActions';
+import { removeFromWishlist } from '../store/actions/wishlistActions';
+import EmptyWishlist from '../components/EmptyWishlist';
 
 const Wishlist = props => {
     const pressHandler = item => props.navigation.navigate({
@@ -14,23 +15,30 @@ const Wishlist = props => {
         }
     });
 
+    const wishlistItems = useSelector(state => state.wishlist)
     const dispacth = useDispatch();
 
     const addToCartHandler = item => {
         dispacth(addToCart(item))
     }
+    const removeFromWishlistHandler = item => {
+        dispacth(removeFromWishlist(item))
+    }
+
+    const List = wishlistItems.length > 0 ? <ScrollView contentContainerStyle={styles.container}>
+        {
+            wishlistItems.map(item => <WishlistItem
+                item={item}
+                key={item.title}
+                press={pressHandler.bind(this, item)}
+                addToCartHandler={addToCartHandler.bind(this, item)}
+                removeFromWishlistHandler={removeFromWishlistHandler.bind(this, item.id)}
+            ></WishlistItem>)
+        }
+    </ScrollView> : <EmptyWishlist></EmptyWishlist>
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            {
-                drinks.map(item => <WishlistItem
-                    item={item}
-                    key={item.title}
-                    press={pressHandler.bind(this, item)}
-                    addToCartHandler={addToCartHandler.bind(this, item)}
-                ></WishlistItem>)
-            }
-        </ScrollView>
+        List
     );
 }
 
