@@ -25,8 +25,13 @@ const Profile = props => {
 
             <View style={styles.linksContainer}>
                 <ProfileListItem
-                    name='orders'
-                    icon='bars'
+                    name='Edit profile'
+                    icon='edit'
+                    pressHandler={pressHandler.bind(this, 'Orders')}>
+                </ProfileListItem>
+                <ProfileListItem
+                    name='Edit address'
+                    icon='enviromento'
                     pressHandler={pressHandler.bind(this, 'Orders')}>
                 </ProfileListItem>
                 <ProfileListItem
@@ -35,8 +40,8 @@ const Profile = props => {
                     pressHandler={pressHandler.bind(this, 'Orders')}>
                 </ProfileListItem>
                 <ProfileListItem
-                    name='orders'
-                    icon='bars'
+                    name='logout'
+                    icon='logout'
                     pressHandler={pressHandler.bind(this, 'Orders')}>
                 </ProfileListItem>
             </View>
@@ -72,7 +77,9 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: 'bold'
     },
-    // links
+    linksContainer: {
+        marginTop: 20
+    }
 
 })
 

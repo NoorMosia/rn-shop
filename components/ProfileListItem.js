@@ -34,21 +34,21 @@ const styles = StyleSheet.create({
         marginRight: 20
     },
     linkIcon: {
-        fontSize: 36
+        fontSize: 24
     },
     linkNameContainer: {
         width: '80%',
-        height: '100%',
     },
     linkName: {
-        fontSize: 26,
+        fontSize: 18,
+        textTransform: 'capitalize'
     },
     arrowIconContainer: {
         height: '100%',
         marginLeft: -20
     },
     arrowIcon: {
-        fontSize: 46
+        fontSize: 30
     }
 })
 

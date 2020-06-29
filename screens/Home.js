@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HorizontalList from '../components/HorizontalList';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch, } from 'react-redux';
+import { getItems } from '../store/actions/itemActions';
 
 const Home = props => {
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(getItems())
+    // }, [dispatch])
+
 
     const foodItems = useSelector(state =>
         state.items.filter(prod => prod.category === 'fast food')

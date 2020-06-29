@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
 
 import Navigation from '../shop/Navigation/Drawer';
 import itemsReducer from './store/reducers/itemsReducer';
@@ -13,7 +14,7 @@ const rootReducer = combineReducers({
   wishlist: wishlistReducer
 })
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(reduxThunk))
 
 export default function App() {
   return (

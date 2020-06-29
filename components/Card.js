@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
         height: '70%',
         justifyContent: 'center',
         alignItems: 'center',
-        overflow: 'visible'
+        overflow: 'visible',
+        position: 'relative'
     },
     Bottom: {
         padding: 5
