@@ -2,31 +2,41 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import CustomDrawerLink from '../components/CustomDrawerLink';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import Stack from './Stack';
 import Orders from '../screens/Orders';
 
 const MyDrawerNavigator = createDrawerNavigator({
     Home: {
         screen: Stack,
+        navigationOptions: {
+            drawerIcon: <AntDesign name='home' size={24} />
+        }
     },
     Orders: {
         screen: Orders,
+        navigationOptions: {
+            drawerIcon: <AntDesign name='bars' size={24} />
+        }
+    },
+    Category: {
+        screen: Orders,
+        navigationOptions: {
+            drawerIcon: <AntDesign name='database' size={24} />
+        }
+    },
+    Logout: {
+        screen: Orders,
+        navigationOptions: {
+            drawerIcon: <AntDesign name='logout' home size={24} />
+        }
     }
 },
     {
-        navigationOptions: ({ navigation }) => ({
-            drawerIcon: ({ focused, tintColor }) => {
-                const { routeName } = navigation.state;
-                let iconName;
+        initialRouteName: 'Home',
+        contentComponent: CustomDrawerLink,
 
-                return <Ionicons name={iconName} size={25} color={tintColor} />;
-            },
-        }),
-        drawerOptions: {
-            activeTintColor: 'tomato',
-            inactiveTintColor: 'gray',
-        },
     },
 );
 
