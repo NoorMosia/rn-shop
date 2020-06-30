@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
     WideCard: {
         backgroundColor: 'white',
         height: 130,
-        width: '100%',
-        margin: 10,
+        width: '96%',
+        margin: '2%',
         borderRadius: 3,
         overflow: "hidden",
         flexDirection: 'row'

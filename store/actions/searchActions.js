@@ -1,8 +1,8 @@
 export const SEARCH = 'SEARCH';
 
-export const search = item => {
+export const search = term => {
     return {
         type: SEARCH,
-        item: item
+        term: term
     }
 }

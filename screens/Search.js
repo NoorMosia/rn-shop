@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, ScrollView } from 'react-native';
 
 import SearchItem from '../components/SearchItem';
 import BasicButton from '../components/BasicButton';
 import EmptyView from '../components/EmptyView';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/actions/cartActions';
+import { search } from '../store/actions/searchActions';
 import { addToWishlist } from '../store/actions/wishlistActions';
 
 // import bakery from '../store/reducers/initData';
 
 const Search = props => {
+
+    const [searchInput, setSearchInput] = useState('');
+
+    const searchInputHandler = term => {
+        console.log(term)
+        setSearchInput(term)
+    }
+
+
+
     const pressHandler = item => props.navigation.navigate({
         routeName: 'productDetails',
         params: {
             product: item
         }
     });
-    const data = []
+    const data = useSelector(state => state.search)
 
     const dispatch = useDispatch();
 
@@ -27,6 +38,9 @@ const Search = props => {
     }
     const addToWishlistHandler = item => {
         dispatch(addToWishlist(item))
+    }
+    const searchHandler = term => {
+        dispatch(search(term))
     }
 
     const List = data.length > 0
@@ -54,10 +68,15 @@ const Search = props => {
         <View>
             <View style={styles.seachContainer}>
                 <View style={styles.searchBox}>
-                    <TextInput style={styles.input}></TextInput>
+                    <TextInput
+                        onChangeText={searchInputHandler}
+                        style={styles.input}
+                    >
+                        {searchInput}
+                    </TextInput>
                 </View>
 
-                <BasicButton>Search</BasicButton>
+                <BasicButton searchHandler={searchHandler.bind(this, searchInput.toLowerCase())}>Search</BasicButton>
             </View>
 
             {List}

@@ -7,11 +7,13 @@ import Navigation from '../shop/Navigation/Drawer';
 import itemsReducer from './store/reducers/itemsReducer';
 import cartReducer from './store/reducers/cartReducer';
 import wishlistReducer from './store/reducers/WishlistReducer';
+import SearchReducer from './store/reducers/SearchReducer';
 
 const rootReducer = combineReducers({
   items: itemsReducer,
   cart: cartReducer,
-  wishlist: wishlistReducer
+  wishlist: wishlistReducer,
+  search: SearchReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(reduxThunk))
