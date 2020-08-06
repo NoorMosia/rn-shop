@@ -14,6 +14,12 @@ const MyDrawerNavigator = createDrawerNavigator({
             drawerIcon: <AntDesign name='home' size={24} />
         }
     },
+    Category: {
+        screen: Orders,
+        navigationOptions: {
+            drawerIcon: <AntDesign name='database' size={24} />
+        }
+    },
     Orders: {
         screen: Orders,
         navigationOptions: {

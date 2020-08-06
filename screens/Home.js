@@ -12,7 +12,6 @@ const Home = props => {
     //     dispatch(getItems())
     // }, [dispatch])
 
-
     const foodItems = useSelector(state =>
         state.items.filter(prod => prod.category === 'fast food')
     );

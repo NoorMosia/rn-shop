@@ -13,35 +13,24 @@ import { addToWishlist } from '../store/actions/wishlistActions';
 // import bakery from '../store/reducers/initData';
 
 const Search = props => {
-
-    const [searchInput, setSearchInput] = useState('');
-
-    const searchInputHandler = term => {
-        console.log(term)
-        setSearchInput(term)
-    }
-
-
-
+    //navigation
     const pressHandler = item => props.navigation.navigate({
         routeName: 'productDetails',
         params: {
             product: item
         }
     });
+
+    //state
     const data = useSelector(state => state.search)
-
     const dispatch = useDispatch();
+    const addToCartHandler = item => dispatch(addToCart(item))
+    const addToWishlistHandler = item => dispatch(addToWishlist(item))
+    const searchHandler = term => dispatch(search(term))
 
-    const addToCartHandler = item => {
-        dispatch(addToCart(item))
-    }
-    const addToWishlistHandler = item => {
-        dispatch(addToWishlist(item))
-    }
-    const searchHandler = term => {
-        dispatch(search(term))
-    }
+    //local state
+    const [searchInput, setSearchInput] = useState('');
+    const searchInputHandler = term => setSearchInput(term)
 
     const List = data.length > 0
         ?
@@ -60,9 +49,7 @@ const Search = props => {
             }
         </ScrollView>
         :
-        <EmptyView iconName='search1'>
-
-        </EmptyView>
+        <EmptyView iconName='search1'></EmptyView>
 
     return (
         <View>

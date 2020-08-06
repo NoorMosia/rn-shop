@@ -3,8 +3,16 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import WideCard from './WideCard';
 import { addToCart } from '../store/actions/cartActions';
+import { useSelector } from 'react-redux';
 
 const wishListItem = props => {
+
+    const cartItems = useSelector(state => state.cart);
+    const isInCart = cartItems.items.forEach(item => {
+        if (item.id === props.item.id) {
+            return true;
+        }
+    })
     return (
         <WideCard>
             <TouchableOpacity onPress={props.press} style={styles.ImageContainer}>
@@ -40,7 +48,7 @@ const wishListItem = props => {
                         style={styles.addToCart}
                         onPress={props.addToCartHandler}
                     >
-                        <Text>add to cart</Text>
+                        {isInCart ? <Text>Add to cart</Text> : <Text>Go to cart</Text>}
                     </TouchableOpacity>
 
                 </View>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 
 const Card = props => {
+
     return (
         <View style={styles.Card}>
             <View style={styles.Top}>
