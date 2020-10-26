@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
-import Navigation from '../shop/Navigation/Drawer';
+import Navigation from '../shop/Navigation/Switch';
 import itemsReducer from './store/reducers/itemsReducer';
 import cartReducer from './store/reducers/cartReducer';
 import wishlistReducer from './store/reducers/WishlistReducer';
