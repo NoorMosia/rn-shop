@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import {
     StyleSheet,
     ScrollView,
     Text,
-    View
+    View,
+    Alert
 } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
@@ -15,21 +16,49 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../store/actions/authAction';
 
 let Auth = props => {
-    const [isLogin, useIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(true);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
 
     let form = null;
 
-    const auth = () => {
-        props.navigation.navigate('drawer')
+    useEffect(() => {
+        if (error) {
+            Alert.alert('An Error Occurred!', error.message, [{ text: 'Okay' }]);
+        }
+    }, [error]);
+
+    const auth = async () => {
+        setLoading(true)
+        if (isLogin) {
+            try {
+                await dispatch(actions.login("email@gmail.com", "password"));
+                setLoading(false)
+                props.navigation.navigate('drawer');
+            } catch (err) {
+                setError(err)
+            }
+        }
+        else {
+            try {
+                await dispatch(actions.signup("email@gmail.com", "password"));
+                setLoading(false)
+                props.navigation.navigate('drawer');
+            } catch (err) {
+                setLoading(false)
+                setError(err)
+            }
+        }
     }
 
     if (isLogin) {
-        form = <Login authenticate={() => auth}></Login>
+        form = <Login authenticate={() => auth()}></Login>
     } else {
-        form = <Signup authenticate={() => props.navigation.navigate('drawer')}></Signup>
+        form = <Signup authenticate={() => auth()}></Signup>
     }
 
-    const changeForm = islogin => useIsLogin(!islogin);
+    const changeForm = islogin => setIsLogin(!islogin);
 
     return (
         <ScrollView contentContainerStyle={styles.Auth}>

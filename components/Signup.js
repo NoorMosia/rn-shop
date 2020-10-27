@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     formInput: {
         height: 40,
         width: "90%",
-        backgroundColor: 'rgb(231, 231, 231)',
+        borderBottomWidth: 1,
         marginVertical: 10,
         fontSize: 22,
         padding: 5,
