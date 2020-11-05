@@ -10,7 +10,7 @@ import { addToCart } from '../store/actions/cartActions';
 import { search } from '../store/actions/searchActions';
 import { addToWishlist } from '../store/actions/wishlistActions';
 
-// import bakery from '../store/reducers/initData';
+import allData from '../store/reducers/initData';
 
 const Search = props => {
     //navigation

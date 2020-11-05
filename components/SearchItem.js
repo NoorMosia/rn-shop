@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
         width: '33%',
         justifyContent: "center",
         alignItems: "center",
+        overflow: 'visible'
     },
     Image: {
         width: '55%',

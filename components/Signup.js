@@ -4,7 +4,8 @@ import {
     TouchableOpacity,
     Text,
     View,
-    TextInput
+    TextInput,
+    ActivityIndicator
 } from 'react-native';
 
 const Signup = props => {
@@ -33,10 +34,15 @@ const Signup = props => {
 
                 </TextInput>
             </View>
-            <View style={styles.ButtonHolder}>
-                <TouchableOpacity style={styles.Button} onPress={props.authenticate}>
-                    <Text style={styles.ButtonText}>Sign up</Text>
-                </TouchableOpacity>
+            <View style={styles.ButtonHolder}>{
+                props.isloading
+                    ?
+                    <ActivityIndicator size="small" color='grey' />
+                    :
+                    <TouchableOpacity style={styles.Button} onPress={props.authenticate}>
+                        <Text style={styles.ButtonText}>Sign up</Text>
+                    </TouchableOpacity>
+            }
             </View>
         </View>
     )

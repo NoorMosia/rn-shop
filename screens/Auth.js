@@ -5,7 +5,7 @@ import {
     ScrollView,
     Text,
     View,
-    Alert
+    Alert,
 } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
@@ -33,16 +33,17 @@ let Auth = props => {
         setLoading(true)
         if (isLogin) {
             try {
-                await dispatch(actions.login("email@gmail.com", "password"));
+                // await dispatch(actions.login("emails@gmail.com", "password"));
                 setLoading(false)
                 props.navigation.navigate('drawer');
             } catch (err) {
+                setLoading(false)
                 setError(err)
             }
         }
         else {
             try {
-                await dispatch(actions.signup("email@gmail.com", "password"));
+                await dispatch(actions.signup("emaila@gmail.com", "password"));
                 setLoading(false)
                 props.navigation.navigate('drawer');
             } catch (err) {
@@ -53,9 +54,9 @@ let Auth = props => {
     }
 
     if (isLogin) {
-        form = <Login authenticate={() => auth()}></Login>
+        form = <Login isloading={loading} authenticate={() => auth()}></Login>
     } else {
-        form = <Signup authenticate={() => auth()}></Signup>
+        form = <Signup isloading={loading} authenticate={() => auth()}></Signup>
     }
 
     const changeForm = islogin => setIsLogin(!islogin);

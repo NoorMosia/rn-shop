@@ -65,7 +65,7 @@ const Cart = props => {
 
 const styles = StyleSheet.create({
     container: {
-        margin: 20,
+        margin: 10,
         paddingBottom: 100,
         alignItems: 'center'
     },

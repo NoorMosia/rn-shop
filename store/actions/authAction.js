@@ -25,7 +25,7 @@ export const signup = (email, password) => {
 
         const responseData = await response.json();
         console.log(responseData)
-        dispatch({ type: SIGNUP })
+        dispatch({ type: SIGNUP, userId: responseData.userId, token: token })
     }
 
 }
@@ -48,7 +48,8 @@ export const login = (email, password) => {
         )
 
         if (!response.ok) {
-            throw new Error('Sooooomething went wrong')
+            const res = await response.json()
+            throw new Error(res.error.message)
         }
 
         const responseData = await response.json();

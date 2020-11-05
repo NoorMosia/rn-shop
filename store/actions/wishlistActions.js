@@ -7,6 +7,7 @@ export const addToWishlist = item => {
         item: item
     }
 }
+
 export const removeFromWishlist = id => {
     return {
         type: REMOVE_FROM_WISHLIST,
