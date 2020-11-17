@@ -11,6 +11,7 @@ const reducer = (state = initialState, action) => {
                     return item
                 }
             })
+
             return foundData
         default:
             return state
